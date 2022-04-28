@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Wordle from "./components/Wordle"
-import wordBank from "../src/wordle-bank.txt"
+import wordBank from "../src/dummyData/wordle-bank.txt"
 
 function App() {
   const [solution, setSolution] = useState(null)
@@ -17,6 +17,8 @@ function App() {
       setWordSet(wordArray)
     })
   }, [setSolution, setWordSet])
+
+  console.log(solution)
 
   return (
     <div className="App">

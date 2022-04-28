@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import wordBank from "../../src/wordle-bank.txt"
+import wordBank from "../../src/dummyData/wordle-bank.txt"
 
 const useWordle = (solution) => {
   const [turn, setTurn] = useState(0)
