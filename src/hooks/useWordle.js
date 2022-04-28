@@ -1,4 +1,7 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import wordBank from "../../src/wordle-bank.txt"
 
 const useWordle = (solution) => {
   const [turn, setTurn] = useState(0)
@@ -8,6 +11,17 @@ const useWordle = (solution) => {
   const [isCorrect, setIsCorrect] = useState(false)
   const [usedKeys, setUsedKeys] = useState({}) // {a: "green", b: "yellow", c: "grey"}
 
+  const [wordSet, setWordSet] = useState(null)
+
+  useEffect(() => {
+    fetch(wordBank)
+    .then((response) => response.text())
+    .then((result) => {
+      const wordArray = result.split("\n");
+      setWordSet(wordArray)
+    })
+  }, [setWordSet])
+
   // format a guess into an array of letter objects
   // e.g. [{key: "a", color: "yellow"}] or green/grey colour
   const formatGuess = () => {
@@ -16,7 +30,7 @@ const useWordle = (solution) => {
       return {key: l, color: "grey"}
     })
 
-    // find ant green letters
+    // find any green letters
     formattedGuess.forEach((l, i) => {
       if (solutionArray[i] === l.key) {
         formattedGuess[i].color = "green"
@@ -90,21 +104,26 @@ const useWordle = (solution) => {
   // if user press enter, add new guess
   const handleKeyUp = ({ key }) => {
     if (key === "Enter") {
+      if (currentGuess.length === 5 && !wordSet.includes(currentGuess)) {
+        toast('Invalid word')
+        return
+      }
+
       // only add guess if turn is less than 5
       if (turn > 5) {
-        console.log("You used all your guesses")
+        toast('You used all your guesses')
         return
       }
 
       // do not allow duplicate words
       if (history.includes(currentGuess)) {
-        console.log("You already tried that word")
+        toast('You already tried that word')
         return
       }
 
       // check word is 5 long
       if (currentGuess.length !== 5) {
-        console.log("Word must be 5 chars")
+        toast('Word must be 5 chars')
         return
       }
 

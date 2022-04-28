@@ -1,23 +1,30 @@
 import { useEffect, useState } from "react"
 import Wordle from "./components/Wordle"
+import wordBank from "../src/wordle-bank.txt"
 
 function App() {
   const [solution, setSolution] = useState(null)
+  const [wordSet, setWordSet] = useState(null)
 
   useEffect(() => {
-    fetch("http://localhost:3001/solutions")
-      .then(res => res.json())
-      .then(json => {
-        // random int between 0 & 14
-        const randomSolution = json[Math.floor(Math.random()*json.length)]
-        setSolution(randomSolution.word)
-      })
-  }, [setSolution])
+    fetch(wordBank)
+    .then((response) => response.text())
+    .then((result) => {
+      const wordArray = result.split("\n");
+      const randomSolution = wordArray[~~(Math.random()*wordArray.length)]
+
+      setSolution(randomSolution)
+      setWordSet(wordArray)
+    })
+  }, [setSolution, setWordSet])
 
   return (
     <div className="App">
-      <h1>Wordle</h1>
-      {solution && <Wordle solution={solution} />}
+      <header>
+        <h1>Wordle</h1>
+      </header>
+
+      {solution && <Wordle solution={solution} wordSet={wordSet} />}
     </div>
   )
 }
