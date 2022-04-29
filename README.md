@@ -25,6 +25,6 @@ $PROJECT_ROOT
 
 ### Screenshot
 
-<img width="300" alt="Screenshot 2022-04-29 at 00 34 52" src="https://user-images.githubusercontent.com/68222437/165849784-4b2956eb-68fd-453b-9f57-34511b8db68d.png">
+<img width="500" alt="Screenshot 2022-04-29 at 00 34 52" src="https://user-images.githubusercontent.com/68222437/165849784-4b2956eb-68fd-453b-9f57-34511b8db68d.png">
 
-<img width="300" alt="Screenshot 2022-04-29 at 00 34 41" src="https://user-images.githubusercontent.com/68222437/165849774-02f2fbf2-bcfc-4e83-a6f1-8649831c7327.png">
+<img width="500" alt="Screenshot 2022-04-29 at 00 34 41" src="https://user-images.githubusercontent.com/68222437/165849774-02f2fbf2-bcfc-4e83-a6f1-8649831c7327.png">
