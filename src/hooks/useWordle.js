@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
-import wordBank from "../../src/dummyData/wordle-bank.txt"
 
 const useWordle = (solution) => {
   const [turn, setTurn] = useState(0)
@@ -10,17 +9,14 @@ const useWordle = (solution) => {
   const [history, setHistory] = useState([]) // each guess is a string
   const [isCorrect, setIsCorrect] = useState(false)
   const [usedKeys, setUsedKeys] = useState({}) // {a: "green", b: "yellow", c: "grey"}
-
-  const [wordSet, setWordSet] = useState(null)
+  const [wordSet, setWordSet] = useState([])
 
   useEffect(() => {
-    fetch(wordBank)
-    .then((response) => response.text())
-    .then((result) => {
-      const wordArray = result.split("\n");
-      setWordSet(wordArray)
-    })
-  }, [setWordSet])
+    const wordSet = JSON.parse(localStorage.getItem('wordSet'));
+    if (wordSet) {
+      setWordSet(wordSet);
+    }
+  }, []);
 
   // format a guess into an array of letter objects
   // e.g. [{key: "a", color: "yellow"}] or green/grey colour
