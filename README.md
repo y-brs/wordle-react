@@ -2,7 +2,7 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/8e1c5b68-5a9a-4d7f-9dbd-e48bcc6d9c77/deploy-status)](https://app.netlify.com/sites/jade-macaron-9e6f77/deploys)
 
-http://jade-macaron-9e6f77.netlify.app
+http://wordle-react-9e6f77.netlify.app
 
 ## Stack
 - [React](https://reactjs.org/) - A JavaScript library for building user interfaces
